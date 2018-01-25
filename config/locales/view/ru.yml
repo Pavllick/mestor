@@ -1,0 +1,24 @@
+---
+ru:
+  sensors:
+    form:
+      unit: Единица измерения
+  activerecord:
+    models:
+      sensor: Датчик
+    attributes:
+      attribute_commons: &commons
+      sensor:
+        serial_number: Серийный номер
+        name: Название датчика
+        unit:
+          pascal: Паскаль
+          k_pascal: кило Паскаль
+          m_pascal: мега Паскаль
+          celsius: градус Цельсия
+          ampere: Ампер
+          volt: Вольт
+          watt: Ватт
+        upper_range_limit: Верхний предел измерений
+        lower_range_limit: Нижний предел измерений
+        new_sensor: Добавить новый датчик

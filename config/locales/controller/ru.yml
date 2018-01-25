@@ -1,0 +1,13 @@
+---
+ru:
+  controller:
+    sensor:
+      create:
+        success: Датчик успешно добавлен
+        fail: "Возникли следующие ошибки:  %{errors}"
+      update:
+        fail: Датчик успешно отредактирован
+        success: "Возникли следующие ошибки:  %{errors}"
+      desroy:
+        fail: Датчик удалён
+        success: "Возникли следующие ошибки:  %{errors}"

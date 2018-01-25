@@ -1,0 +1,13 @@
+---
+ru:
+  controller:
+    sensor:
+      create:
+        fail: Fail
+        success: Success
+      desroy:
+        fail: Fail
+        success: Success
+      update:
+        fail: Fail
+        success: Success
