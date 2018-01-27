@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180127065947) do
 
   create_table "users_sensors", force: :cascade do |t|
     t.string "serial_number"
+    t.text "note"
     t.boolean "authorized", default: false
     t.bigint "sensor_id"
     t.datetime "created_at", null: false

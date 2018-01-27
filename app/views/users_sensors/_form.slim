@@ -1,0 +1,4 @@
+= simple_form_for users_sensor do |f|
+  = f.input :serial_number
+  = f.input :note, as: :text
+  = f.button :submit, t('activerecord.attributes.users_sensor.new'), class: 'btn-primary'

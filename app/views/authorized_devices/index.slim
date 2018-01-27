@@ -1,8 +1,10 @@
-div.header_title.pt-md-3.mx-auto
+h3.pt-md-3.mx-auto
   span
-    h3 = t('activerecord.attributes.authorized_device.index')
+    = t('activerecord.attributes.authorized_device.index')
   span.float-right
-    = link_to 'dfsd', new_authorized_device_path, class: 'btn btn-primary'
+    = link_to t("activerecord.attributes.authorized_device.new"), new_authorized_device_path,
+      class: 'btn btn-primary'
+
 hr.pb-md-4
 .row
   .col-12
@@ -17,9 +19,9 @@ hr.pb-md-4
       - @authorized_devices.reverse_each do |authorized_device|
         tr
           th scope="row" = authorized_device.id
-          td = authorized_device.name
+          td = authorized_device.mi_type_sign
           td.text-center = authorized_device.serial_number
           td
             = link_to t("activerecord.attributes.destroy"),
-              edit_authorized_device_path(authorized_device), method: :delete,
+              authorized_device, method: :delete,
               data: { confirm: t("activerecord.attributes.destroy_confirmation") }

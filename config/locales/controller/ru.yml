@@ -16,3 +16,10 @@ ru:
         success: Устройство успешно отредактировано
       desroy:
         success: Устройство удалёно
+    users_sensor:
+      create:
+        success: Датчик успешно добавлен
+      update:
+        success: Датчик успешно отредактирован
+      desroy:
+        success: Датчик удалён

@@ -37,7 +37,7 @@ class SensorsController < ApplicationController
   end
 
   def destroy
-    if @sensor.desroy
+    if @sensor.destroy
       redirect_to sensors_path,
                     notice: t('controller.sensor.desroy.success')
     else

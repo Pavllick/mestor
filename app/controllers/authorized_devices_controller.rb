@@ -37,7 +37,7 @@ class AuthorizedDevicesController < ApplicationController
   end
 
   def destroy
-    if @authorized_device.desroy
+    if @authorized_device.destroy
       redirect_to authorized_devices_path,
                     notice: t('controller.authorized_device.desroy.success')
     else
@@ -49,7 +49,7 @@ class AuthorizedDevicesController < ApplicationController
 
   private
     def authorized_device_params
-      params.require(:authorized_device).permit(:name, :serial_number)
+      params.require(:authorized_device).permit(:mi_type_sign, :serial_number)
     end
 
     def set_authorized_device

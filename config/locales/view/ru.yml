@@ -11,10 +11,12 @@ ru:
     models:
       sensor: Датчик
       authorized_device: Устройство
+      users_sensor: Датчик
     attributes:
       attribute_commons: &commons
       edit: Редактировать
       destroy: Удалить
+      add: Добавить
       destroy_confirmation: Вы уверены, что хотите удалить?
       sensor:
         mi_name:
@@ -42,3 +44,7 @@ ru:
         new: Подтвердить новое устройство
         edit: Редактировать утройство
         index: Подтверждённые устройства
+      users_sensor:
+        new: Добавить датчик
+        serial_number: Серийный номер
+        note: Примечание
