@@ -1,0 +1,2 @@
+module UsersSensorsHelper
+end

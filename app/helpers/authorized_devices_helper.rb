@@ -1,0 +1,2 @@
+module AuthorizedDevicesHelper
+end

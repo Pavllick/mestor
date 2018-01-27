@@ -1,13 +1,18 @@
 ---
 ru:
   controller:
+    fail: "Возникли следующие ошибки:  %{errors}"
     sensor:
       create:
         success: Датчик успешно добавлен
-        fail: "Возникли следующие ошибки:  %{errors}"
       update:
-        fail: Датчик успешно отредактирован
-        success: "Возникли следующие ошибки:  %{errors}"
+        success: Датчик успешно отредактирован
       desroy:
-        fail: Датчик удалён
-        success: "Возникли следующие ошибки:  %{errors}"
+        success: Датчик удалён
+    authorized_device:
+      create:
+        success: Устройство успешно добавлено
+      update:
+        success: Устройство успешно отредактировано
+      desroy:
+        success: Устройство удалёно

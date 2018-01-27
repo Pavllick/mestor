@@ -10,26 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124075433) do
+ActiveRecord::Schema.define(version: 20180127065947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "measurements", force: :cascade do |t|
+  create_table "authorized_devices", force: :cascade do |t|
+    t.string "mi_type_sign"
+    t.string "serial_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sensor_measurements", force: :cascade do |t|
     t.integer "value"
-    t.bigint "sensor_id"
-    t.datetime "created_at"
-    t.index ["sensor_id"], name: "index_measurements_on_sensor_id"
+    t.bigint "users_sensor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_sensor_id"], name: "index_sensor_measurements_on_users_sensor_id"
   end
 
   create_table "sensors", force: :cascade do |t|
-    t.string "serial_number"
-    t.string "name"
+    t.string "mi_name"
+    t.string "mi_type_sign"
     t.string "unit"
     t.integer "upper_range_limit"
     t.integer "lower_range_limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users_sensors", force: :cascade do |t|
+    t.string "serial_number"
+    t.boolean "authorized", default: false
+    t.bigint "sensor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sensor_id"], name: "index_users_sensors_on_sensor_id"
   end
 
 end

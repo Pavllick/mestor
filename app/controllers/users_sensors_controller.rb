@@ -1,0 +1,2 @@
+class UsersSensorsController < ApplicationController
+end
