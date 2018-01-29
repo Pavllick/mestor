@@ -20,7 +20,7 @@
 //= require chartkick
 //= require_tree .
 
-$(function(){
+$(document).on('turbolinks:load', function() {
 
   $('#masonry-container').masonry({
     itemSelector: '.box_sensor'
