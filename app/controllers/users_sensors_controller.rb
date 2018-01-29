@@ -3,7 +3,7 @@ class UsersSensorsController < ApplicationController
 
   def index
     @users_sensors = UsersSensor.all
-    authorization @users_sensors
+    authorization
   end
 
   def show; end
@@ -14,9 +14,6 @@ class UsersSensorsController < ApplicationController
 
   def create
     @users_sensor = UsersSensor.new(users_sensor_params)
-    if authorized? @users_sensor.serial_number
-    	@users_sensor.authorized = true
-    end
     if @users_sensor.save
       redirect_to users_sensors_path,
                     notice: t('controller.users_sensor.create.success')
@@ -53,22 +50,27 @@ class UsersSensorsController < ApplicationController
 
   private
     def users_sensor_params
-      params.require(:users_sensor).permit(:mi_type_sign, :serial_number)
+      params.require(:users_sensor).permit(:serial_number, :note)
     end
 
     def set_users_sensor
       @users_sensor = UsersSensor.find(params[:id])
     end
 
-    def authorization users_sensors
+    def authorization
+      users_sensors = UsersSensor.all
+
     	users_sensors.each do |users_sensor|
-    		if authorized? users_sensor.serial_number
-		    	users_sensor.authorized = true
-		    end
+        device_in_authorization = authorized_device users_sensor.serial_number
+
+    		if device_in_authorization.present?
+          users_sensor.sensor = Sensor.where(mi_type_sign: device_in_authorization.mi_type_sign).first
+		      users_sensor.save
+        end
     	end
     end
 
-    def authorized? serial_number
-    	AuthorizedDevice.where(serial_number: serial_number).first.present?
+    def authorized_device serial_number
+    	AuthorizedDevice.where(serial_number: serial_number).first
     end
 end

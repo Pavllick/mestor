@@ -2,50 +2,57 @@ h3.pt-md-3.mx-auto
   span
     = t('activerecord.attributes.sensor.index')
   span.float-right
-    = link_to t("activerecord.attributes.sensor.new"), new_sensor_path,
+    = link_to t("activerecord.attributes.sensor.new"), new_users_sensor_path,
       class: 'btn btn-primary'
 hr.pb-md-4
 .row
-  - @sensors.reverse_each do |sensor|
+  - @users_sensors.reverse_each do |users_sensor|
     .col-lg-4.col-md-3.col-sm-6.mb-3
       .card
         .card-header
           span
-            = sensor.mi_type_sign
-          / span.float-right
-          /   small.text-muted = sensor.serial_number
-        .card-body
-          span
-            h5.card-title
-              span
-                = t("activerecord.attributes.sensor.mi_name.#{sensor.mi_name}")
-                | ,
-              span<
-                | [
-                = t("activerecord.attributes.sensor.unit.#{sensor.unit}")
-                | ]
-          .card-text
-            = t("activerecord.attributes.sensor.upper_range_limit")
-            | :&nbsp
-            = sensor.upper_range_limit
-          .card-text
-            = t("activerecord.attributes.sensor.lower_range_limit")
-            | :&nbsp
-            = sensor.lower_range_limit
-        .card-footer.text-muted
-          span
-            small
-              | Добавлен/Изменён
+            - if users_sensor.sensor.present?
+              = users_sensor.sensor.mi_type_sign
+            - else
+              = t('activerecord.attributes.authorized_device.non_authorized')
           span.float-right
-            small
-              = l sensor.updated_at, format: "%d %b %Y"
+            small.text-muted = users_sensor.serial_number
+        - if users_sensor.sensor.present?
+          .card-body
+            span
+              h5.card-title
+                span
+                  = t("activerecord.attributes.sensor.mi_name.#{users_sensor.sensor.mi_name}")
+                  | ,
+                span<
+                  | [
+                  = t("activerecord.attributes.sensor.unit.#{users_sensor.sensor.unit}")
+                  | ]
+            .card-text
+              = t("activerecord.attributes.sensor.upper_range_limit")
+              | :&nbsp
+              = users_sensor.sensor.upper_range_limit
+            .card-text
+              = t("activerecord.attributes.sensor.lower_range_limit")
+              | :&nbsp
+              = users_sensor.sensor.lower_range_limit
+        - if users_sensor.note.present?
+          .card-footer.bg-transparent.border-light 
+            .card-text
+              = users_sensor.note
+        .card-footer.text-muted.bg-transparent
+            span
+              small = t("activerecord.attributes.users_sensor.date")
+            span.float-right
+              small
+                = l users_sensor.updated_at, format: "%d %b %Y"
         .card-footer
           span
             small
               = link_to t("activerecord.attributes.edit"),
-                edit_sensor_path(sensor)
+                edit_users_sensor_path(users_sensor)
           span.float-right
             small
               = link_to t("activerecord.attributes.destroy"),
-                edit_sensor_path(sensor), method: :delete,
+                edit_users_sensor_path(users_sensor), method: :delete,
                 data: { confirm: t("activerecord.attributes.destroy_confirmation") }

@@ -23,8 +23,13 @@ html
           #navbarNavAltMarkup.collapse.navbar-collapse
             .navbar-nav
               a.nav-item.nav-link.active href="#" = t('menu.settings')
+              = active_link_to  t('menu.users_sensors'), users_sensors_path,
+                class: 'nav-item nav-link'
+              = active_link_to  t('menu.sensors'), sensors_path,
+                class: 'nav-item nav-link'
+              = active_link_to  t('menu.authorized_devices'), authorized_devices_path,
+                class: 'nav-item nav-link'
               a.nav-item.nav-link href="#" Features
-              a.nav-item.nav-link href="#" Pricing
               a.nav-item.nav-link.disabled href="#" Disabled
 
     .container

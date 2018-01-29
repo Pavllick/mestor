@@ -41,6 +41,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'seed-fu', '~> 2.3'
   gem 'faker'
+  gem 'active_link_to'
 end
 
 group :development do
