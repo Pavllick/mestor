@@ -5,9 +5,9 @@ h3.pt-md-3.mx-auto
     = link_to t("activerecord.attributes.sensor.new"), new_users_sensor_path,
       class: 'btn btn-primary'
 hr.pb-md-4
-.row
+#masonry-container.row
   - @users_sensors.reverse_each do |users_sensor|
-    .col-lg-4.col-md-3.col-sm-6.mb-3
+    .col-lg-4.col-md-3.col-sm-6.mb-3.box_sensor
       .card
         .card-header
           span
@@ -56,3 +56,4 @@ hr.pb-md-4
               = link_to t("activerecord.attributes.destroy"),
                 edit_users_sensor_path(users_sensor), method: :delete,
                 data: { confirm: t("activerecord.attributes.destroy_confirmation") }
+

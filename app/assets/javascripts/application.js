@@ -12,9 +12,18 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require jquery3
+//= require jquery
+//= require jquery.turbolinks
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+
+$(function(){
+
+  $('#masonry-container').masonry({
+    itemSelector: '.box_sensor'
+  });
+
+});

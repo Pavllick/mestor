@@ -41,6 +41,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'seed-fu', '~> 2.3'
   gem 'faker'
+  gem 'jquery-turbolinks'
+
+  # Helpers
   gem 'active_link_to'
 end
 
