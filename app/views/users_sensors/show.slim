@@ -11,15 +11,14 @@
     .col-12
       .card
         .card-body
-          span = link_to users_sensor_path(@users_sensor)
-            h5.card-title
-              span
-                = t("activerecord.attributes.sensor.mi_name.#{@users_sensor.sensor.mi_name}")
-                | ,
-              span<
-                | [
-                = t("activerecord.attributes.sensor.unit.#{@users_sensor.sensor.unit}")
-                | ]
+          h5.card-title
+            span
+              = t("activerecord.attributes.sensor.mi_name.#{@users_sensor.sensor.mi_name}")
+              | ,
+            span<
+              | [
+              = t("activerecord.attributes.sensor.unit.#{@users_sensor.sensor.unit}")
+              | ]
           .card-text
             = t("activerecord.attributes.sensor.upper_range_limit")
             | :&nbsp
@@ -48,3 +47,5 @@
               = link_to t("activerecord.attributes.destroy"),
                 edit_users_sensor_path(@users_sensor), method: :delete,
                 data: { confirm: t("activerecord.attributes.destroy_confirmation") }
+
+= line_chart load_measurement_data(@users_sensor, 40), refresh: 1

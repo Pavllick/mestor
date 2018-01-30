@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby.exe
+
+require 'uri'
+require 'net/http'
+
+uri = URI("http://localhost/sensor_measure")
+req = Net::HTTP::Post.new(uri)
+res = Net::HTTP.start(uri.hostname, 3000) do |http|
+  40.times do
+  	v = rand(10...30)
+  	req.set_form_data('v': v, 's_n': 'DFG465DFG4')
+
+  	http.request(req)
+  	sleep 0.5
+  end
+end

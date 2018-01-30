@@ -66,6 +66,9 @@ class UsersSensorsController < ApplicationController
     		if device_in_authorization.present?
           users_sensor.sensor = Sensor.where(mi_type_sign: device_in_authorization.mi_type_sign).first
 		      users_sensor.save
+        else
+          users_sensor.sensor = nil
+          users_sensor.save
         end
     	end
     end

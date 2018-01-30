@@ -2,7 +2,10 @@ class SensorMeasurementsController < ApplicationController
 	 skip_before_action :verify_authenticity_token
 
   def create
-    users_sensor = UsersSensor.where(serial_number: sensor_measurement_params[:s_n])
+    # logger.debug '*'*40
+    # logger.debug params
+    # logger.debug '*'*40
+    users_sensor = UsersSensor.where(serial_number: sensor_measurement_params[:s_n]).first
     if(users_sensor.present?)
       sensor_measurement = users_sensor.sensor_measurements.new(value: sensor_measurement_params[:v])
       unless sensor_measurement.save

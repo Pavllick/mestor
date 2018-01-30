@@ -26,6 +26,13 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'chartkick'
+gem 'groupdate'
+gem 'slim'
+gem 'simple_form'
+gem 'jquery-turbolinks'
+
+# Helpers
+gem 'active_link_to'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -35,16 +42,10 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   # User's gems
-  gem 'slim'
-  gem 'simple_form'
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
   gem 'seed-fu', '~> 2.3'
   gem 'faker'
-  gem 'jquery-turbolinks'
-
-  # Helpers
-  gem 'active_link_to'
 end
 
 group :development do
