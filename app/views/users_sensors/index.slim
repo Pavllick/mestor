@@ -1,13 +1,15 @@
-h3.pt-md-3.mx-auto
-  span
-    = t('activerecord.attributes.sensor.index')
-  span.float-right
-    = link_to t("activerecord.attributes.sensor.new"), new_users_sensor_path,
-      class: 'btn btn-primary'
-hr.pb-md-4
+- content_for :page_title
+  h3.pt-md-3.mx-auto
+    span
+      = t('activerecord.attributes.sensor.index')
+    span.float-right
+      = link_to t("activerecord.attributes.sensor.new"), new_users_sensor_path,
+        class: 'btn btn-primary'
+  hr.pb-md-4
+
 #masonry-container.row
   - @users_sensors.reverse_each do |users_sensor|
-    .col-lg-4.col-md-3.col-sm-6.mb-3.box_sensor
+    .col-lg-4.col-md-6.col-sm-8.mb-3.box_sensor
       .card
         .card-header
           span
@@ -19,7 +21,7 @@ hr.pb-md-4
             small.text-muted = users_sensor.serial_number
         - if users_sensor.sensor.present?
           .card-body
-            span
+            span = link_to users_sensor_path(users_sensor)
               h5.card-title
                 span
                   = t("activerecord.attributes.sensor.mi_name.#{users_sensor.sensor.mi_name}")

@@ -1,4 +1,7 @@
-h3.pt-md-3.pb-md-4.mx-auto = t('activerecord.attributes.authorized_device.edit')
+- content_for :page_title
+	h3.pt-md-3.mx-auto = t('activerecord.attributes.authorized_device.edit')
+	hr.pb-md-4
+
 .row
   .col-4
     = render 'form', authorized_device: @authorized_device

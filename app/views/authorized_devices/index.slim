@@ -1,11 +1,12 @@
-h3.pt-md-3.mx-auto
-  span
-    = t('activerecord.attributes.authorized_device.index')
-  span.float-right
-    = link_to t("activerecord.attributes.authorized_device.new"), new_authorized_device_path,
-      class: 'btn btn-primary'
+- content_for :page_title
+  h3.pt-md-3.mx-auto
+    span
+      = t('activerecord.attributes.authorized_device.index')
+    span.float-right
+      = link_to t("activerecord.attributes.authorized_device.new"), new_authorized_device_path,
+        class: 'btn btn-primary'
+  hr.pb-md-4
 
-hr.pb-md-4
 .row
   .col-12
     table.table

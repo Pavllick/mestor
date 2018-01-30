@@ -1,3 +1,10 @@
 // Place all the styles related to the UsersSensors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box_sensor {
+	min-width: 320px;
+	max-width: 320px;
+
+	padding-right: 0;
+}

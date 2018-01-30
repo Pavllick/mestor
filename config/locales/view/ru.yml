@@ -3,9 +3,9 @@ ru:
   menu:
     title: НПП "ПРОМА"
     settings: Параметры
-    sensors: Дступные СИ
+    sensors: Доступные СИ
     users_sensors: Датчики
-    authorized_devices: Подтверждёные устройства
+    authorized_devices: Подтверждённые устройства
   sensors:
     form:
       mi_name: Наименование СИ

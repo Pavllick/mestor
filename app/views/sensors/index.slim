@@ -1,13 +1,15 @@
-h3.pt-md-3.mx-auto
-  span
-    = t('activerecord.attributes.sensor.index')
-  span.float-right
-    = link_to t("activerecord.attributes.sensor.new"), new_sensor_path,
-      class: 'btn btn-primary'
-hr.pb-md-4
+- content_for :page_title
+  h3.pt-md-3.mx-auto
+    span
+      = t('activerecord.attributes.sensor.index')
+    span.float-right
+      = link_to t("activerecord.attributes.sensor.new"), new_sensor_path,
+        class: 'btn btn-primary'
+  hr.pb-md-4
+
 .row
   - @sensors.reverse_each do |sensor|
-    .col-lg-4.col-md-3.col-sm-6.mb-3
+    .col-lg-4.col-md-3.col-sm-6.mb-3.box_sensor
       .card
         .card-header
           span
