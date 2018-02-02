@@ -7,7 +7,7 @@ class UsersSensorsController < ApplicationController
   end
 
   def show; end
-
+  
   def new
     @users_sensor = UsersSensor.new
   end
@@ -31,9 +31,20 @@ class UsersSensorsController < ApplicationController
       redirect_to users_sensors_path,
                     notice: t('controller.users_sensor.update.success')
     else
-      redirect_back fallback_location: root_path,
+      redirect_back fallback_location: users_sensors_path,
                     notice: t('controller.fail',
                             @users_sensor.errors.messages[:description].first)
+    end
+  end
+
+  def set_ext_params
+    data = params[:data]
+    error_msg = DeviceHandler.post({'data': data})
+    if !error_msg
+      redirect_back fallback_location: users_sensors_path, notice: t('connection.success')
+    else
+      redirect_back fallback_location: users_sensors_path,
+        flash: {error: error_msg}
     end
   end
 
@@ -42,7 +53,7 @@ class UsersSensorsController < ApplicationController
       redirect_to users_sensors_path,
                     notice: t('controller.users_sensor.desroy.success')
     else
-      redirect_back fallback_location: root_path,
+      redirect_back fallback_location: users_sensors_path,
                     notice: t('controller.fail',
                             @users_sensor.errors.messages[:description].first)
     end

@@ -53,3 +53,7 @@ ru:
         sensor: Датчик
         note: Примечание
         date: Добавлен/Изменён
+    chart:
+      xtitle: Время
+      ytitle: Амплитуда, %{unit}
+      value: Значение в [%{unit}]

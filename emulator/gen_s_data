@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby.exe
+
+require 'uri'
+require 'net/http'
+require 'socket'
+
+# uri = URI("http://localhost/sensor_measure")
+# req = Net::HTTP::Post.new(uri)
+# res = Net::HTTP.start(uri.hostname, 3000) do |http|
+#   40.times do
+#   	v = rand(10...30)
+#   	req.set_form_data('v': v, 's_n': 'DFG465DFG4')
+
+#   	http.request(req)
+#   	sleep 0.5
+#   end
+# end
+
+# uri = URI("http://ya.ru")
+
+# threads << Thread.new do
+# 	2.times do
+# 		res = Net::HTTP.post_form(uri, 'q' => 'ruby', 'max' => '50')
+# 		puts res.body
+# 	end
+# 	# 20.times do |ii|
+# 	# 	req = Net::HTTP::Post.new(uri)
+# 	# 	res = Net::HTTP.start(uri.hostname, 8000)
+# 	# 	v = rand(10...30)
+# 	# 	req.set_form_data('v': v, 's_n': 'DFG465DFG4')
+# 	# 	puts 'reqdsfsdfsdfsdfsfsdfsf = ' + ii.to_s
+# 	# 	res.request(req)
+# 	# 	# sleep 0.5
+# 	# end
+# end
+
+http_req = File.read('http.txt')
+loop do
+	socket = TCPSocket.open("localhost", 8000)
+
+	if socket
+		puts "Starting the Client..................."
+		socket.send http_req, 0
+		puts "Closing the Client..................."
+	end
+	socket.close 
+
+	sleep 2
+end
+
+# sleep 4

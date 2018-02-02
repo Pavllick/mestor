@@ -16,9 +16,13 @@
 //= require jquery.turbolinks
 //= require popper
 //= require bootstrap-sprockets
+//= require moment
+//= require moment/ru.js
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+
+moment.locale('ru');
 
 $(document).on('turbolinks:load', function() {
 
@@ -26,5 +30,10 @@ $(document).on('turbolinks:load', function() {
     itemSelector: '.box_sensor',
     // horizontalOrder: true,
   });
+
+  var chart = Chartkick.charts["chart-1"];
+  chart.getChartObject();
+	
+	console.log(chart.getOptions());
 
 });
