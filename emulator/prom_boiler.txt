@@ -1,0 +1,3 @@
+temperature_set65
+alarm0
+work_state0

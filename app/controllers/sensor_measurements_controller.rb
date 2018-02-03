@@ -6,13 +6,13 @@ class SensorMeasurementsController < ApplicationController
     # logger.debug params
     # logger.debug '*'*40
     users_sensor = UsersSensor.where(serial_number: sensor_measurement_params[:s_n]).first
-    # if(users_sensor.present?)
-    #   sensor_measurement = users_sensor.sensor_measurements.new(value: sensor_measurement_params[:v])
-    #   unless sensor_measurement.save
-    #     to_logger(request.body.read.to_s +
-    #       "\nErrors: " +  sensor_measurement.errors.full_messages.to_s)
-    #   end
-    # end
+    if(users_sensor.present?)
+      sensor_measurement = users_sensor.sensor_measurements.new(value: sensor_measurement_params[:v])
+      unless sensor_measurement.save
+        to_logger(request.body.read.to_s +
+          "\nErrors: " +  sensor_measurement.errors.full_messages.to_s)
+      end
+    end
     
     head 200, content_type: "text/html"
   end
