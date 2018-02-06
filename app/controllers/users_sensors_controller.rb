@@ -18,7 +18,7 @@ class UsersSensorsController < ApplicationController
       redirect_to users_sensors_path,
                     notice: t('controller.users_sensor.create.success')
     else
-      redirect_back fallback_location: users_sensors_path,
+      render :new,
         flash: {error: t('controller.fail',
         errors: "<br><hr> #{@users_sensor.errors.full_messages.join("<br>")}")}
     end

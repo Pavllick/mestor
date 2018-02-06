@@ -10,16 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127065947) do
+ActiveRecord::Schema.define(version: 20180206074610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "analog_params", force: :cascade do |t|
+    t.string "identifier"
+    t.string "name"
+    t.string "unit"
+    t.integer "upper_range_limit"
+    t.integer "lower_range_limit"
+    t.bigint "device_id"
+    t.index ["device_id"], name: "index_analog_params_on_device_id"
+  end
+
+  create_table "arbitrary_params", force: :cascade do |t|
+    t.string "identifier"
+    t.string "name"
+    t.bigint "device_id"
+    t.index ["device_id"], name: "index_arbitrary_params_on_device_id"
+  end
 
   create_table "authorized_devices", force: :cascade do |t|
     t.string "mi_type_sign"
     t.string "serial_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "mi_name"
+    t.string "mi_type_sign"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "discrete_params", force: :cascade do |t|
+    t.string "identifier"
+    t.string "name"
+    t.bigint "device_id"
+    t.index ["device_id"], name: "index_discrete_params_on_device_id"
   end
 
   create_table "sensor_measurements", force: :cascade do |t|

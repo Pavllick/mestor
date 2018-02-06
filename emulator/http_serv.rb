@@ -77,7 +77,7 @@ threads << Thread.new do
 		  puts req
 		  puts '='*20 + ' Incoming request end ' + '='*20 + "\n"
 
-		  val = req[/data=(\d)+/][/\d+/]
+		  val = req[/data=(-)*(\d)+/][/(-)*\d+/]
 		  data[@temperature_set] = val.to_s.to_i if val
 		rescue #IO::WaitReadable
 		  #IO.select([client])

@@ -14,7 +14,7 @@ module UsersSensorsHelper
     			type: "time",
     			time: { 
     				unit: 'second', 
-    				unitStepSize: 4, 
+    				# unitStepSize: 4, 
     				tooltipFormat: "DD.MM.YYYY HH:mm:ss", 
     				displayFormats: second_format
     			},

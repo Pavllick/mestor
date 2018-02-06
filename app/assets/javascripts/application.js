@@ -15,25 +15,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require popper
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require moment
 //= require moment/ru.js
 //= require Chart.bundle
 //= require chartkick
+//= require cocoon
 //= require_tree .
-
-moment.locale('ru');
-
-$(document).on('turbolinks:load', function() {
-
-  $('#masonry-container').masonry({
-    itemSelector: '.box_sensor',
-    // horizontalOrder: true,
-  });
-
-  var chart = Chartkick.charts["chart-1"];
-  chart.getChartObject();
-	
-	console.log(chart.getOptions());
-
-});

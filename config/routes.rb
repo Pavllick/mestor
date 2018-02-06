@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :arbitrary_params
+  resources :discrete_params
+  resources :analog_params
+  resources :devices
   resources :users_sensors do
   	post '/set_ext_params', to: 'users_sensors#set_ext_params'
   end
