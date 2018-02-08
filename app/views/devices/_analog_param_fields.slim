@@ -1,0 +1,21 @@
+.col-12.nested-fields
+	h5 = t('activerecord.attributes.device.analog_param')
+	.row.align-items-start.params_row.pt-md-3
+		.col-4
+			= f.input :name, label: false
+			= f.input :active, as: :hidden, input_html: { value: true }
+		.col-4
+			= f.input :identifier, label: false
+		.col-4
+			= f.input :unit, label: false, collection: AnalogParam.units.keys.map { |type| \
+			  [t("activerecord.attributes.device.unit.#{type}"), type] },
+			  include_blank: false, input_html: { class: 'form-control' }
+	.row.align-items-start.params_row
+		.col-4
+			= f.input :lower_range_limit, label: false
+		.col-4
+			= f.input :upper_range_limit, label: false
+		.col-4
+			= link_to_remove_association f, class: 'btn btn-secondary form-group'
+	hr
+	

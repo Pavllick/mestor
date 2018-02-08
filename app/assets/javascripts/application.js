@@ -22,3 +22,14 @@
 //= require chartkick
 //= require cocoon
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+
+	$('#masonry-container').masonry({
+	  itemSelector: '.box_sensor',
+	  // horizontalOrder: true,
+	});
+
+	$('[data-toggle="tooltip"]').tooltip();
+
+}); 

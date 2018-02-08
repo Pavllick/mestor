@@ -1,5 +1,5 @@
 class DiscreteParam < ApplicationRecord
 	belongs_to :device
 
-	validates :identifier, :name, presence: true
+	validates :identifier, :name, :active, presence: true
 end

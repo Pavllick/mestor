@@ -16,4 +16,8 @@ module ApplicationHelper
   def error_message message
     '*'*16 + ' Error ' + '*'*17 + "\n" + '*'*40 +"\n" + message + "\n" + '*'*40
   end
+
+  def side_bar_decoration
+    'list-group-item d-flex justify-content-between align-items-center list-group-item-action'
+  end
 end

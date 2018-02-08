@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180206074610) do
     t.string "unit"
     t.integer "upper_range_limit"
     t.integer "lower_range_limit"
+    t.boolean "active"
     t.bigint "device_id"
     t.index ["device_id"], name: "index_analog_params_on_device_id"
   end
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180206074610) do
   create_table "arbitrary_params", force: :cascade do |t|
     t.string "identifier"
     t.string "name"
+    t.boolean "active"
     t.bigint "device_id"
     t.index ["device_id"], name: "index_arbitrary_params_on_device_id"
   end
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180206074610) do
   create_table "discrete_params", force: :cascade do |t|
     t.string "identifier"
     t.string "name"
+    t.boolean "active"
     t.bigint "device_id"
     t.index ["device_id"], name: "index_discrete_params_on_device_id"
   end

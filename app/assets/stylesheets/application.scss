@@ -14,7 +14,14 @@
  *= require_self
  */
 
-$red: #dc3545;
+body {
+	min-width:580px;
+	width: auto !important;
+}
+
+.side_bar {
+	min-width:240px;
+}
 
 .card-footer {
   padding: 0.45rem 1.25rem;
@@ -25,16 +32,25 @@ $red: #dc3545;
 	border-top-right-radius: 0;
 }
 
+.alert.alert-danger {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
 .list-group .list-group-item.active span {
 	color: #007bff;
 	background-color: #fff;
 }
 
 .side_bar {
-  padding-right: 0;
+  // padding-right: 0;
 	padding-left: 0;
 
 	.list-group .list-group-item {
 		padding: 0.45rem 1.25rem;
 	}
+}
+
+.params_row {
+	background-color: #f7f7f7;
 }

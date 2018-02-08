@@ -6,15 +6,41 @@ ru:
     sensors: Доступные СИ
     users_sensors: Датчики
     authorized_devices: Подтверждённые устройства
+    devices: Устройства
   sensors:
     form:
       mi_name: Наименование СИ
       unit: Единица измерения
+
+  cocoon:
+    defaults:
+      remove: Удалить
+
+  simple_form:
+    labels:
+      device:
+        mi_name: Наименование
+        mi_type_sign: Обозначение типа
+    placeholders:
+      analog_params:
+        name: Название
+        identifier: Идентификатор
+        unit: Единица измерения
+        upper_range_limit: Верхний предел измерений
+        lower_range_limit: Нижний предел измерений
+      discrete_params:
+        name: Название
+        identifier: Идентификатор
+      arbitrary_params:
+        name: Название
+        identifier: Идентификатор
+
   activerecord:
     models:
       sensor: Датчик
       authorized_device: Устройство
       users_sensor: Датчик
+      device: Устройство
     attributes:
       attribute_commons: &commons
       edit: Редактировать
@@ -53,6 +79,35 @@ ru:
         sensor: Датчик
         note: Примечание
         date: Добавлен/Изменён
+      device:
+        index: Устройства
+        new: Добавить новое устройство
+        edit: Редактировать устройство
+        mi_name:
+          preasure_sensor: Датчик давления
+          temperature_sensor: Термопреобразователь сопротивления
+        unit_val: Единица измерения
+        unit:
+          pascal: Па
+          k_pascal: кПа
+          m_pascal: МПа
+          celsius: С
+          ampere: А
+          volt: В
+          watt: Вт
+        analog_param: Аналоговый параметр
+        discrete_param: Дискретный параметр
+        arbitrary_param: Числовой параметр
+        analog_params: Аналоговые параметры
+        discrete_params: Дискретные параметры
+        arbitrary_params: Числовые параметры
+        name: Название
+        identifier: Идентификатор
+        upper_range_limit: Верхний предел измерений
+        lower_range_limit: Нижний предел измерений
+        u_r_l: '*ВПИ'
+        l_r_l: '*НПИ'
+
     chart:
       xtitle: Время
       ytitle: Амплитуда, %{unit}

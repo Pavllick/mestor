@@ -1,0 +1,41 @@
+= simple_form_for device do |f|
+  .row
+    .col-6
+      = f.input :mi_name, collection: Device.mi_names.keys.map { |type| \
+        [t("activerecord.attributes.device.mi_name.#{type}"), type] },
+        include_blank: false, input_html: { class: 'form-control' }
+      = f.input :mi_type_sign
+  
+  .row
+    = f.simple_fields_for :analog_params do |analog_param|
+      = render 'analog_param_fields', f: analog_param
+    = f.simple_fields_for :discrete_params do |discrete_param|
+      = render 'discrete_param_fields', f: discrete_param
+    = f.simple_fields_for :arbitrary_params do |arbitrary_param|
+      = render 'arbitrary_param_fields', f: arbitrary_param
+      
+    .col-12.nested-fields-list
+
+  .row.links
+    .col-4
+      = link_to_add_association f, :analog_params, class: 'form-group btn btn-info',
+        data: {association_insertion_node: '.nested-fields-list'} do
+        span.icon>
+          strong +
+        = t('activerecord.attributes.device.analog_param')
+    .col-4
+      = link_to_add_association f, :discrete_params, class: 'form-group btn btn-info',
+        data: {association_insertion_node: '.nested-fields-list'} do
+        span.icon>
+          strong +
+        = t('activerecord.attributes.device.discrete_param')
+    .col-4
+      = link_to_add_association f, :arbitrary_params, class: 'form-group btn btn-info',
+        data: {association_insertion_node: '.nested-fields-list'} do
+        span.icon>
+          strong +
+        = t('activerecord.attributes.device.arbitrary_param')
+
+  .row
+    .col-4
+      = f.button :submit, class: 'btn-primary'

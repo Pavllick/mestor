@@ -1,0 +1,12 @@
+.col-12.nested-fields
+	h5 = t('activerecord.attributes.device.arbitrary_param')
+	.row.align-items-start.params_row.pt-md-3
+			.col-4
+				= f.input :name, label: false
+				= f.input :active, as: :hidden, input_html: { value: true }
+			.col-4
+				= f.input :identifier, label: false
+			.col-4
+				= link_to_remove_association f, class: 'btn btn-secondary form-group'
+	hr
+	

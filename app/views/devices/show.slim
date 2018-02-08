@@ -1,0 +1,68 @@
+- content_for :page_title
+	h3.pt-md-3.mx-auto
+		= @device.title
+	hr.pb-md-4
+
+- if @device.analog_params.any?
+	.row
+		.col
+			h5 = t('activerecord.attributes.device.analog_params')
+
+			table.table
+				thead.thead-dark
+					tr
+						th scope="col" = t("activerecord.attributes.device.name")
+						th scope="col" = t("activerecord.attributes.device.identifier")
+						th.text-center scope="col" = t("activerecord.attributes.device.unit_val")
+						th.text-center scope="col" *tooltip(t("activerecord.attributes.device.lower_range_limit"))
+							= t("activerecord.attributes.device.l_r_l")
+						th.text-center scope="col" *tooltip(t("activerecord.attributes.device.upper_range_limit"))
+							= t("activerecord.attributes.device.u_r_l")
+				tbody
+				- @device.analog_params.each do |analog_param|
+					tr
+						td
+							= analog_param.name
+						td
+							= analog_param.identifier
+						td.text-center
+							= t("activerecord.attributes.device.unit.#{analog_param.unit}")
+						td.text-center
+							= analog_param.lower_range_limit
+						td.text-center
+							= analog_param.upper_range_limit
+
+.row
+	- if @device.discrete_params.any?
+		.col-6
+			h5 = t('activerecord.attributes.device.discrete_params')
+
+			table.table
+				thead.thead-dark
+					tr
+						th scope="col" = t("activerecord.attributes.device.name")
+						th scope="col" = t("activerecord.attributes.device.identifier")
+				tbody
+				- @device.discrete_params.each do |discrete_param|
+					tr
+						td
+							= discrete_param.name
+						td
+							= discrete_param.identifier
+
+	- if @device.arbitrary_params.any?
+		.col-6
+			h5 = t('activerecord.attributes.device.arbitrary_params')
+
+			table.table
+				thead.thead-dark
+					tr
+						th scope="col" = t("activerecord.attributes.device.name")
+						th scope="col" = t("activerecord.attributes.device.identifier")
+				tbody
+				- @device.arbitrary_params.each do |arbitrary_param|
+					tr
+						td
+							= arbitrary_param.name
+						td
+							= arbitrary_param.identifier

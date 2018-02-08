@@ -1,0 +1,50 @@
+- content_for :page_title
+  h3.pt-md-3.mx-auto
+    span
+      = t('activerecord.attributes.device.index')
+    span.float-right
+      = link_to t("activerecord.attributes.device.new"), new_device_path,
+        class: 'btn btn-primary'
+  hr.pb-md-4
+
+.row
+  - @devices.reverse_each do |device|
+    .col-lg-4.col-md-3.col-sm-6.mb-3.box-device
+      .card *{class: device.border_danger?}
+        .card-header *{class: device.header_danger?}
+          span
+            = device.mi_type_sign
+        .card-body
+          span = link_to device_path(device)
+            h5.card-title
+              = t("activerecord.attributes.device.mi_name.#{device.mi_name}")
+          
+          -if device.analog_params.any?
+            .card-text
+              span = t('activerecord.attributes.device.analog_params')
+              span = device.params_length device.analog_params
+          -if device.discrete_params.any?
+            .card-text
+              span = t('activerecord.attributes.device.discrete_params')
+              span = device.params_length device.discrete_params
+          -if device.arbitrary_params.any?
+            .card-text
+              span = t('activerecord.attributes.device.arbitrary_params')
+              span = device.params_length device.arbitrary_params
+        .card-footer.text-muted
+          span
+            small
+              | Добавлен/Изменён
+          span.float-right
+            small
+              = l device.updated_at, format: "%d %b %Y"
+        .card-footer
+          span
+            small
+              = link_to t("activerecord.attributes.edit"),
+                edit_device_path(device)
+          span.float-right
+            small
+              = link_to t("activerecord.attributes.destroy"),
+                edit_device_path(device), method: :delete,
+                data: { confirm: t("activerecord.attributes.destroy_confirmation") }
