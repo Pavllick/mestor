@@ -19,7 +19,7 @@ class DevicesController < ApplicationController
 			redirect_to devices_path,
 				notice: t('controller.device.create.success')
 		else
-			# flash[:error] = device_params
+			flash[:error] = @device.errors.messages
 			render :new
 		end
 	end
@@ -36,7 +36,7 @@ class DevicesController < ApplicationController
 
 	def destroy
 		if @device.destroy
-			redirect_to sensors_path, notice: t('controller.device.desroy.success')
+			redirect_to devices_path, notice: t('controller.device.desroy.success')
 		else
 			redirect_back fallback_location: root_path,
 				notice: t('controller.fail', @device.errors.messages[:description].first)

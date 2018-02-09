@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206074610) do
+ActiveRecord::Schema.define(version: 20180209062127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,24 @@ ActiveRecord::Schema.define(version: 20180206074610) do
     t.boolean "active"
     t.bigint "device_id"
     t.index ["device_id"], name: "index_discrete_params_on_device_id"
+  end
+
+  create_table "instances", force: :cascade do |t|
+    t.string "serial_number"
+    t.string "note"
+    t.bigint "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_instances_on_device_id"
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.string "identifier"
+    t.integer "value"
+    t.bigint "instance_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instance_id"], name: "index_measurements_on_instance_id"
   end
 
   create_table "sensor_measurements", force: :cascade do |t|

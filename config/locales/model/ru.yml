@@ -1,0 +1,9 @@
+---
+ru:
+  model:
+    format:
+      identifier: 'только символы от a-z и 0-9 без пробелов'
+    invalid:
+      uniqueness:
+        identifier:
+          fail: такой идентификатор уже существует у данного устройства

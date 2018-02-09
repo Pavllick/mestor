@@ -97,7 +97,7 @@ threads << Thread.new do
 		rand_low = data[@temperature_set] - 4
 		rand_high = data[@temperature_set] + 4
 		v = rand(rand_low...rand_high)
-		http_req = http_req_header + "v=#{v}&s_n=DFG465DFG4"
+		http_req = http_req_header + "serial_number=DFG465DFG4&identifier=temperature&value=#{v}"
 
 		socket = TCPSocket.open(ror_uri.host, ror_uri.port)
 

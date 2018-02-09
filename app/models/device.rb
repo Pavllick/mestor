@@ -9,6 +9,9 @@ class Device < ApplicationRecord
 
 	validates :mi_name, :mi_type_sign, presence: true
 
-	enum mi_names: { preasure_sensor: 0,
-									 temperature_sensor: 1 }
+	enum mi_names: { burner_control: 0,
+									 pressure_meter: 1,
+									 temperature_meter: 2,
+									 preasure_sensor: 3,
+									 temperature_sensor: 4 }
 end

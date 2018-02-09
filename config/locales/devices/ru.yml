@@ -1,0 +1,9 @@
+---
+ru:
+  device:
+    mi_names:
+      burner_control: Автомат горения
+      pressure_meter: Измеритель давления
+      temperature_meter: Измеритель температуры
+      preasure_sensor: Датчик давления
+      temperature_sensor: Термопреобразователь сопротивления

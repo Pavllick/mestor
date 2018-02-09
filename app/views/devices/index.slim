@@ -7,7 +7,7 @@
         class: 'btn btn-primary'
   hr.pb-md-4
 
-.row
+#masonry-container.row
   - @devices.reverse_each do |device|
     .col-lg-4.col-md-3.col-sm-6.mb-3.box-device
       .card *{class: device.border_danger?}
@@ -46,5 +46,5 @@
           span.float-right
             small
               = link_to t("activerecord.attributes.destroy"),
-                edit_device_path(device), method: :delete,
+                device_path(device), method: :delete,
                 data: { confirm: t("activerecord.attributes.destroy_confirmation") }
