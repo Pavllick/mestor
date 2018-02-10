@@ -1,13 +1,11 @@
 class InstanceDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def border_danger?
+		!instance.device ? 'border-danger bg-transparent' : 'border-success bg-transparent'
+	end
 
+	def header_danger?
+		!instance.device ? 'text-white bg-danger' : 'text-white bg-success'
+	end
 end

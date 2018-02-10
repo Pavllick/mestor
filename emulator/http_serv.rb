@@ -29,6 +29,7 @@ threads = []
 # @work_state = 0
 
 @temperature_set = :temperature_set
+@pressure_set = :pressure_set
 @alarm = :alarm
 @work_state = :work_state
 
@@ -36,6 +37,7 @@ data = Hash.new
 data_old = Hash.new
 
 data[@temperature_set] = 0
+data[@pressure_set] = 0
 data[@alarm] = 0
 data[@work_state] = 0
 
@@ -44,6 +46,7 @@ mode = "w"
 if !File.file?("prom_boiler.txt")
 	File.open("prom_boiler.txt", mode) do |f|
 		f.write("#{@temperature_set}#{data[@temperature_set]}\n")
+		f.write("#{@pressure_set}#{data[@pressure_set]}\n")
 		f.write("#{@alarm}#{data[@alarm]}\n")
 		f.write("#{@work_state}#{data[@work_state]}")
 	end
@@ -77,8 +80,10 @@ threads << Thread.new do
 		  puts req
 		  puts '='*20 + ' Incoming request end ' + '='*20 + "\n"
 
-		  val = req[/data=(-)*(\d)+/][/(-)*\d+/]
-		  data[@temperature_set] = val.to_s.to_i if val
+		  if req[/identifier=pressure/]
+			  val = req[/ext_value=(-)*(\d)+/][/(-)*\d+/]
+			  data[@pressure_set] = val.to_s.to_i if val
+			end
 		rescue #IO::WaitReadable
 		  #IO.select([client])
 		  attempts < 40 ? retry : break
@@ -94,11 +99,11 @@ ror_uri = URI("http://localhost:3000")
 threads << Thread.new do
 	http_req_header = File.read('http.txt')
 	loop do
-		rand_low = data[@temperature_set] - 4
-		rand_high = data[@temperature_set] + 4
-		v = rand(rand_low...rand_high)
-		http_req = http_req_header + "serial_number=DFG465DFG4&identifier=temperature&value=#{v}"
-
+		rand_low_pres = data[@pressure_set] - 4
+		rand_high_pres = data[@pressure_set] + 4
+		v_pres = rand(rand_low_pres...rand_high_pres)
+		
+		http_req = http_req_header + "serial_number=S4G68WGW&identifier=pressure&value=#{v_pres}"
 		socket = TCPSocket.open(ror_uri.host, ror_uri.port)
 
 		if socket
@@ -108,7 +113,23 @@ threads << Thread.new do
 			# puts '='*20 + ' Send device data end ' + '='*20 + "\n"
 		end
 		socket.close 
+		sleep 2
 
+
+		rand_low_tempr = data[@temperature_set] - 4
+		rand_high_tempr = data[@temperature_set] + 4
+		v_tempr = rand(rand_low_tempr...rand_high_tempr)
+		
+		http_req = http_req_header + "serial_number=S4G68WGW&identifier=temperature&value=#{v_tempr}"
+		socket = TCPSocket.open(ror_uri.host, ror_uri.port)
+		
+		if socket
+			puts "\n" + '*'*20 + ' Send device data ' + '*'*20  + "\n"
+			socket.send http_req, 0
+			# puts http_req
+			# puts '='*20 + ' Send device data end ' + '='*20 + "\n"
+		end
+		socket.close 
 		sleep 2
 	end
 end
@@ -117,11 +138,13 @@ end
 threads << Thread.new do
 	loop do
 		puts data[@temperature_set]
+		puts data[@pressure_set]
 		if data != data_old
 			file = File.open("prom_boiler.txt", mode)
 			file.truncate file.size
 
 			file.write("#{@temperature_set}#{data[@temperature_set]}\n")
+			file.write("#{@pressure_set}#{data[@pressure_set]}\n")
 			file.write("#{@alarm}#{data[@alarm]}\n")
 			file.write("#{@work_state}#{data[@work_state]}")
 

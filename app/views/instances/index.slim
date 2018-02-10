@@ -1,0 +1,62 @@
+- content_for :page_title
+  h3.pt-md-3.mx-auto
+    span
+      = t('activerecord.attributes.device.index')
+    span.float-right
+      = link_to t("activerecord.attributes.device.new"), new_instance_path,
+        class: 'btn btn-primary'
+  hr.pb-md-4
+
+#masonry-container.row
+  - @instances.reverse_each do |instance|
+    - if instance.device
+      - device = instance.device.decorate
+    .col-lg-4.col-md-6.col-sm-8.mb-3.box-device
+      .card *{class: instance.border_danger?}
+        .card-header *{class: instance.header_danger?}
+          span
+            - if device.present?
+              = device.mi_type_sign
+            - else
+              = t('activerecord.attributes.authorized_device.non_authorized')
+          span.float-right
+            small = instance.serial_number
+        - if device.present?
+          .card-body
+            span = link_to instance_path(instance)
+              h5.card-title
+                = t("activerecord.attributes.device.mi_name.#{device.mi_name}")
+            
+            -if device.analog_params.any?
+              .card-text
+                span = t('activerecord.attributes.device.analog_params')
+                span = device.params_length device.analog_params
+            -if device.discrete_params.any?
+              .card-text
+                span = t('activerecord.attributes.device.discrete_params')
+                span = device.params_length device.discrete_params
+            -if device.arbitrary_params.any?
+              .card-text
+                span = t('activerecord.attributes.device.arbitrary_params')
+                span = device.params_length device.arbitrary_params
+
+        - if instance.note.present?
+          .card-footer.bg-transparent.border-light 
+            .card-text
+              = instance.note
+        .card-footer.text-muted
+          span
+            small = t('activerecord.attributes.device.date')
+          span.float-right
+            small
+              = l instance.updated_at, format: "%d %b %Y"
+        .card-footer
+          span
+            small
+              = link_to t("activerecord.attributes.edit"),
+                edit_instance_path(instance)
+          span.float-right
+            small
+              = link_to t("activerecord.attributes.destroy"),
+                instance_path(instance), method: :delete,
+                data: { confirm: t("activerecord.attributes.destroy_confirmation") }

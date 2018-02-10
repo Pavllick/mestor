@@ -18,7 +18,7 @@ class AnalogParam < ApplicationRecord
 
   def uniqueness_of_identifier
     if device.analog_params.map(&:identifier).count(identifier) > 1
-      errors.add(:identifier, I18n.t('model.invalid.uniqueness.identifier.fail'))
+      errors.add(:identifier, I18n.t('model.device.uniqueness.identifier.fail'))
       false
     else
       true

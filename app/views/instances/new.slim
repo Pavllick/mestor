@@ -1,0 +1,7 @@
+- content_for :page_title
+	h3.pt-md-3.mx-auto = t('activerecord.attributes.device.new')
+	hr.pb-md-4
+
+.row
+  .col-4
+    = render 'form', instance: @instance

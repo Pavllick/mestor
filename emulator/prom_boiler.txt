@@ -1,3 +1,4 @@
 temperature_set65
+pressure_set44
 alarm0
 work_state0

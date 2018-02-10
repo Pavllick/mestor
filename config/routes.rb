@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 	resources :instances do
 		post '/set_ext_params', to: 'instances#set_ext_params'
 	end
+	match 'instances/:id/set_ext_params', to: 'instances#show', via: :get
+
 	resources :measurements
 	post '/measure', to: 'measurements#create'
 
@@ -14,5 +16,4 @@ Rails.application.routes.draw do
 	resources :sensor_measurements
 	resources :sensors
 	resources :sensor_measurements, only: :create
-	# post '/sensor_measure', to: 'sensor_measurements#create'
 end

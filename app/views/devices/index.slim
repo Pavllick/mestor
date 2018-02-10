@@ -33,8 +33,7 @@
               span = device.params_length device.arbitrary_params
         .card-footer.text-muted
           span
-            small
-              | Добавлен/Изменён
+            small = t('activerecord.attributes.device.date')
           span.float-right
             small
               = l device.updated_at, format: "%d %b %Y"

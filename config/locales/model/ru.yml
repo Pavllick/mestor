@@ -1,9 +1,13 @@
 ---
 ru:
   model:
-    format:
-      identifier: 'только символы от a-z и 0-9 без пробелов'
-    invalid:
+    device:
       uniqueness:
         identifier:
           fail: такой идентификатор уже существует у данного устройства
+    instance:
+      ext_value:
+        empty: не может быть пустым
+        not_a_number: не является числом
+    format:
+      identifier: 'только символы от a-z и 0-9 без пробелов'

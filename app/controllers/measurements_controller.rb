@@ -6,11 +6,14 @@ class MeasurementsController < ApplicationController
     # logger.debug params
     # logger.debug '*'*40
     instance = Instance.where(serial_number: measurement_params[:serial_number]).first
-    if(instance.present?)
-      measurement = instance.measurements.new(measurement_params.except(:serial_number))
-      unless measurement.save
-        to_logger(request.body.read.to_s +
-          "\nErrors: " +  measurement.errors.full_messages.to_s)
+    if instance.present?
+      checked_idents = instance.device.analog_params.map(&method(:check_ident))
+      if !checked_idents.include?(false)
+        measurement = instance.measurements.new(measurement_params.except(:serial_number))
+        unless measurement.save
+          to_logger(request.body.read.to_s +
+            "\nErrors: " +  measurement.errors.full_messages.to_s)
+        end
       end
     end
     
@@ -18,6 +21,10 @@ class MeasurementsController < ApplicationController
   end
 
   private
+
+  def check_ident an_param
+    an_param.identifier == measurement_params[:identifier]
+  end
 
   def measurement_params
     params.permit(:serial_number, :identifier, :value)

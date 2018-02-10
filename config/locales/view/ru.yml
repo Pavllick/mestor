@@ -41,6 +41,7 @@ ru:
       authorized_device: Устройство
       users_sensor: Датчик
       device: Устройство
+      instance: Устройство
     attributes:
       attribute_commons: &commons
       edit: Редактировать
@@ -107,6 +108,12 @@ ru:
         lower_range_limit: Нижний предел измерений
         u_r_l: '*ВПИ'
         l_r_l: '*НПИ'
+        date: Изменено
+      instance:
+        serial_number: Серийный номер
+        note: Примечание
+        set_value: 'Задать %{name}'
+        set: Установить
 
     chart:
       xtitle: Время

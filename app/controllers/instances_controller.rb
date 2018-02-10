@@ -1,8 +1,8 @@
 class InstancesController < ApplicationController
-  before_action :set_instance, only: [:show, :edit, :update, :destroy]
+  before_action :set_instance, only: %i(show edit update destroy)
 
   def index
-    @instances = Instance.all
+    @instances = Instance.all.decorate
     authorization
   end
 
@@ -15,7 +15,7 @@ class InstancesController < ApplicationController
   def create
     @instance = Instance.new(instance_params)
     if @instance.save
-      redirect_to instances_path, notice: t('controller.instance.create.success')
+      redirect_to instances_path, notice: t('controller.device.create.success')
     else
       render :new,
         flash: {error: t('controller.fail',
@@ -27,7 +27,7 @@ class InstancesController < ApplicationController
 
   def update
     if @instance.update(instance_params)
-      redirect_to instances_path, notice: t('controller.instance.update.success')
+      redirect_to instances_path, notice: t('controller.device.update.success')
     else
       redirect_back fallback_location: instances_path,
                     notice: t('controller.fail', @instance.errors.messages[:description].first)
@@ -35,18 +35,17 @@ class InstancesController < ApplicationController
   end
 
   def set_ext_params
-    data = params[:data]
-    error_msg = DeviceHandler.post({'data': data})
-    if !error_msg
-      redirect_back fallback_location: instances_path, notice: t('connection.success')
-    else
-      redirect_back fallback_location: instances_path, flash: {error: error_msg}
-    end
+    @instance = Instance.find(params[:instance_id])
+    error_msg = DeviceHandler.post(@instance, ext_params)
+
+    flash[:error] = error_msg if error_msg
+    flash[:notice] = t('connection.success') if !@instance.errors.any? && !error_msg
+    render :show
   end
 
   def destroy
     if @instance.destroy
-      redirect_to instances_path, notice: t('controller.instance.desroy.success')
+      redirect_to instances_path, notice: t('controller.device.desroy.success')
     else
       redirect_back fallback_location: instances_path,
                     notice: t('controller.fail', @instance.errors.messages[:description].first)
@@ -58,21 +57,25 @@ class InstancesController < ApplicationController
       params.require(:instance).permit(:serial_number, :note)
     end
 
+    def ext_params
+      params.require(:instance).permit(:identifier, :ext_value)
+    end
+
     def set_instance
       @instance = Instance.find(params[:id])
     end
 
     def authorization
-      users_sensors = Instance.all
+      instances = Instance.all
 
     	instances.each do |instance|
         device_in_authorization = authorized_device instance.serial_number
 
     		if device_in_authorization.present?
-          instance.sensor = Device.where(mi_type_sign: device_in_authorization.mi_type_sign).first
+          instance.device = Device.where(mi_type_sign: device_in_authorization.mi_type_sign).first
 		      instance.save
         else
-          instance.sensor = nil
+          instance.device = nil
           instance.save
         end
     	end
