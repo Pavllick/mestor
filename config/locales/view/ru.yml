@@ -3,15 +3,9 @@ ru:
   menu:
     title: НПП "ПРОМА"
     settings: Параметры
-    sensors: Доступные СИ
-    users_sensors: Датчики
-    authorized_devices: Подтверждённые устройства
     devices: Устройства
-  sensors:
-    form:
-      mi_name: Наименование СИ
-      unit: Единица измерения
-
+    authorized_devices: Подтверждённые устройства
+    instances: Датчики
   cocoon:
     defaults:
       remove: Удалить
@@ -37,9 +31,7 @@ ru:
 
   activerecord:
     models:
-      sensor: Датчик
       authorized_device: Устройство
-      users_sensor: Датчик
       device: Устройство
       instance: Устройство
     attributes:
@@ -48,26 +40,7 @@ ru:
       destroy: Удалить
       add: Добавить
       destroy_confirmation: Вы уверены, что хотите удалить?
-      sensor:
-        mi_name:
-          preasure_sensor: Датчик давления
-          temperature_sensor: Термопреобразователь сопротивления
-        mi_type_sign: Обозначение типа СИ
-        serial_number: Серийный номер
-        unit:
-          pascal: Па
-          k_pascal: кПа
-          m_pascal: МПа
-          celsius: С
-          ampere: А
-          volt: В
-          watt: Вт
-        upper_range_limit: Верхний предел измерений
-        lower_range_limit: Нижний предел измерений
-        new: Добавить новый датчик
-        edit: Редактировать датчик
-        index: Датчики
-
+      
       authorized_device:
         name: Название утройства
         serial_number: Серийный номер
@@ -75,18 +48,10 @@ ru:
         edit: Редактировать утройство
         index: Подтверждённые устройства
         non_authorized: Устройство пока не доступно
-      users_sensor:
-        serial_number: Серийный номер
-        sensor: Датчик
-        note: Примечание
-        date: Добавлен/Изменён
       device:
         index: Устройства
         new: Добавить новое устройство
         edit: Редактировать устройство
-        mi_name:
-          preasure_sensor: Датчик давления
-          temperature_sensor: Термопреобразователь сопротивления
         unit_val: Единица измерения
         unit:
           pascal: Па

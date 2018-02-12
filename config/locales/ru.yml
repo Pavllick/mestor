@@ -5,14 +5,3 @@ ru:
     fail: 
       config: Не удалось сконфигурировать устройство. Пожалуйста попробуйте позже.
       timeout: Не удалось установить соединение с устройством.
-  controller:
-    sensor:
-      create:
-        fail: Fail
-        success: Success
-      desroy:
-        fail: Fail
-        success: Success
-      update:
-        fail: Fail
-        success: Success

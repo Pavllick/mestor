@@ -1,14 +1,11 @@
 .list-group
-  = active_link_to users_sensors_path, class: side_bar_decoration
-    = t('menu.users_sensors')
-    span.badge.badge-primary.badge-pill = UsersSensor.all.count
-  = active_link_to sensors_path, class: side_bar_decoration
-    = t('menu.sensors')
-    span.badge.badge-primary.badge-pill = Sensor.all.count
-  = active_link_to authorized_devices_path, class: side_bar_decoration
-    = t('menu.authorized_devices')
-    span.badge.badge-primary.badge-pill = AuthorizedDevice.all.count
+  = active_link_to instances_path, class: side_bar_decoration
+    = t('menu.instances')
+    span.badge.badge-primary.badge-pill = Instance.all.count
   = active_link_to devices_path, class: side_bar_decoration
     = t('menu.devices')
     span.badge.badge-primary.badge-pill = Device.all.count
+  = active_link_to authorized_devices_path, class: side_bar_decoration
+    = t('menu.authorized_devices')
+    span.badge.badge-primary.badge-pill = AuthorizedDevice.all.count
 .mt-4 = yield :side_bar_bottom

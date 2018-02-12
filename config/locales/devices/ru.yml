@@ -1,7 +1,7 @@
 ---
 ru:
   device:
-    mi_names:
+    mi_name:
       burner_control: Автомат горения
       pressure_meter: Измеритель давления
       temperature_meter: Измеритель температуры

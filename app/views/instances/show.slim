@@ -13,7 +13,7 @@
 			.card
 				.card-body
 					h5.card-title
-						= t("activerecord.attributes.device.mi_name.#{device.mi_name}")
+						= t("device.mi_name.#{device.mi_name}")
 					-if device.analog_params.any?
 						.card-text
 							span = t('activerecord.attributes.device.analog_params')

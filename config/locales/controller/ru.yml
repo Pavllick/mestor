@@ -2,13 +2,6 @@
 ru:
   controller:
     fail: "Возникли следующие ошибки:  %{errors}"
-    sensor:
-      create:
-        success: Датчик успешно добавлен
-      update:
-        success: Датчик успешно отредактирован
-      desroy:
-        success: Датчик удалён
     authorized_device:
       create:
         success: Устройство успешно добавлено
@@ -16,13 +9,6 @@ ru:
         success: Устройство успешно отредактировано
       desroy:
         success: Устройство удалёно
-    users_sensor:
-      create:
-        success: Датчик успешно добавлен
-      update:
-        success: Датчик успешно отредактирован
-      desroy:
-        success: Датчик удалён
     device:
       params_missing: Необходимо добавить минимум один параметр
       create:

@@ -18,7 +18,7 @@ class DeviceDecorator < ApplicationDecorator
 	end
 
 	def title
-		"#{t("activerecord.attributes.device.mi_name.#{device.mi_name}")} / #{device.mi_type_sign}"
+		"#{t("device.mi_name.#{device.mi_name}")} / #{device.mi_type_sign}"
 	end
 
 	def params_length device_param
