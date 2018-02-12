@@ -7,8 +7,6 @@ class AnalogParam < ApplicationRecord
   validates :identifier, format: { with: /\A[0-9a-z]+\z/,
     message: I18n.t('model.format.identifier') }
   validate :uniqueness_of_identifier
-
-  has_many :users_sensors
   
   enum units: { pascal: 0, k_pascal: 1, m_pascal: 2,
                 celsius: 3,

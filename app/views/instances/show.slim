@@ -56,10 +56,10 @@
 				h5.text-center = analog_param.name
 				= line_chart load_measurement_data(@instance, analog_param, 40), refresh: 1, remote: true,
 				ytitle: t('activerecord.chart.ytitle',
-					unit: t("activerecord.attributes.sensor.unit.#{analog_param.unit}")),
+					unit: t("activerecord.attributes.device.unit.#{analog_param.unit}")),
 				library: chart_options,
 				label: t('activerecord.chart.value',
-					unit: t("activerecord.attributes.sensor.unit.#{analog_param.unit}"))
+					unit: t("activerecord.attributes.device.unit.#{analog_param.unit}"))
 				
 				= simple_form_for @instance, url: instance_set_ext_params_path(@instance), method: :post do |f|
 					.row

@@ -11,9 +11,4 @@ Rails.application.routes.draw do
 
 	resources :measurements
 	post '/measure', to: 'measurements#create'
-
-	resources :users_sensors
-	resources :sensor_measurements
-	resources :sensors
-	resources :sensor_measurements, only: :create
 end

@@ -74,31 +74,4 @@ ActiveRecord::Schema.define(version: 20180209062127) do
     t.index ["instance_id"], name: "index_measurements_on_instance_id"
   end
 
-  create_table "sensor_measurements", force: :cascade do |t|
-    t.integer "value"
-    t.bigint "users_sensor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["users_sensor_id"], name: "index_sensor_measurements_on_users_sensor_id"
-  end
-
-  create_table "sensors", force: :cascade do |t|
-    t.string "mi_name"
-    t.string "mi_type_sign"
-    t.string "unit"
-    t.integer "upper_range_limit"
-    t.integer "lower_range_limit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users_sensors", force: :cascade do |t|
-    t.string "serial_number"
-    t.text "note"
-    t.bigint "sensor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sensor_id"], name: "index_users_sensors_on_sensor_id"
-  end
-
 end
