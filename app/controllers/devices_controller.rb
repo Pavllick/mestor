@@ -19,7 +19,8 @@ class DevicesController < ApplicationController
 			redirect_to devices_path,
 				notice: t('controller.device.create.success')
 		else
-			flash[:error] = @device.errors.messages
+			# flash[:error] = @device.errors.messages
+			flash[:error] = device_params
 			render :new
 		end
 	end

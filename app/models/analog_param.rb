@@ -1,7 +1,8 @@
 class AnalogParam < ApplicationRecord
   belongs_to :device
 
-  validates :identifier, :name, :unit, :active, presence: true
+  validates :identifier, :name, :unit, presence: true
+  validates :active, inclusion: { in: [ true, false ] }
   validates :upper_range_limit, :lower_range_limit, presence: true,
             numericality: { only_integer: true }
   validates :identifier, format: { with: /\A[0-9a-z]+\z/,

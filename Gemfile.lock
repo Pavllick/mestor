@@ -143,6 +143,8 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.1-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+    octicons (5.2.0)
+      nokogiri (>= 1.6.3.1)
     pg (0.21.0)
     pg (0.21.0-x64-mingw32)
     pg (0.21.0-x86-mingw32)
@@ -284,6 +286,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   momentjs-rails
+  octicons
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.4)

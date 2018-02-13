@@ -1,4 +1,10 @@
 module ApplicationHelper
+
+  def octicon(symbol, options = {})
+    options[:fill] = 'currentColor'
+    ::Octicons::Octicon.new(symbol, options).to_svg.html_safe
+  end
+
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
@@ -6,7 +12,7 @@ module ApplicationHelper
   def flash_messages(opts = {})
     flash.each do |msg_type, message|
       concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)}") do
-              concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+              concat content_tag(:button, (octicon "x", height: 20, width: 20), class: "close", data: { dismiss: 'alert' })
               concat message.to_s.html_safe
             end)
     end

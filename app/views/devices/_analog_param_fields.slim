@@ -1,21 +1,30 @@
 .col-12.nested-fields
-	h5 = t('activerecord.attributes.device.analog_param')
-	.row.align-items-start.params_row.pt-md-3
-		.col-4
+	.row.align-items-start
+		.col
+			h5 = t('activerecord.attributes.device.analog_param')
+		.col
+			= link_to_remove_association f, class: close_x do
+				= octicon "x", height: 20, width: 20
+	.row.align-items-start.params_row.pt-3
+		.col-sm-12.col-md-6.col-lg-4
 			= f.input :name, label: false
-			= f.input :active, as: :hidden, input_html: { value: true }
-		.col-4
+		.col-sm-12.col-md-6.col-lg-4
 			= f.input :identifier, label: false
-		.col-4
+		.col-sm-12.col-md-6.col-lg-4
 			= f.input :unit, label: false, collection: AnalogParam.units.keys.map { |type| \
 			  [t("activerecord.attributes.device.unit.#{type}"), type] },
 			  include_blank: false, input_html: { class: 'form-control' }
-	.row.align-items-start.params_row
-		.col-4
+
+		.col-sm-12.col-md-6.col-lg-4
 			= f.input :lower_range_limit, label: false
-		.col-4
+		.col-sm-12.col-md-6.col-lg-4
 			= f.input :upper_range_limit, label: false
-		.col-4
-			= link_to_remove_association f, class: 'btn btn-secondary form-group'
+		.col-sm-12.col-md-6.col-lg-4
+			.row
+				.col
+					= t('activerecord.attributes.device.active')
+				.col
+					= f.input :active, label: false, input_html: { checked: false }
 	hr
 	
+	# .form-group = 'Задание?'
